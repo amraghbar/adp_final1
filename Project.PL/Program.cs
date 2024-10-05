@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Project.PL.Data;
+using Project.DAl.Data;
+using Project.PL.Mapping;
+using System.Reflection;
 
 namespace Project.PL
 {
@@ -22,7 +24,7 @@ namespace Project.PL
                 options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             builder.Services.AddControllersWithViews();
-
+            builder.Services.AddAutoMapper(Assembly.GetAssembly(typeof(MappingProfile))); 
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
